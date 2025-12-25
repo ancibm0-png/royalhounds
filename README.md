@@ -444,5 +444,5 @@ For issues and questions:
 **Built with blockchain technology for a fraud-free academic future.**
 
 **Deploy Status:** Production Ready
-**Last Updated:** December 2024
+**Last Updated:** December 2025
 **Version:** 1.0.0
