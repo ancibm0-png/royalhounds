@@ -60,7 +60,7 @@ export default function Credential3DShowcase({
   return (
     <div className="space-y-6">
       {/* Control Bar */}
-      <div className="flex items-center justify-between bg-white rounded-lg shadow-sm p-4">
+      <div className="flex items-center justify-between bg-gradient-to-br from-[#111] to-black border border-[#1f1f1f] rounded-lg shadow-lg p-4 text-white">
         <div className="flex items-center space-x-2">
           <button
             onClick={() => {
@@ -71,8 +71,8 @@ export default function Credential3DShowcase({
             }}
             className={`p-2 rounded-lg transition-colors ${
               viewMode === 'grid'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-yellow-400 text-black'
+                : 'bg-[#111] text-gray-400 hover:border-yellow-400 border border-[#1f1f1f]'
             }`}
             title="Grid View"
           >
@@ -87,8 +87,8 @@ export default function Credential3DShowcase({
             }}
             className={`p-2 rounded-lg transition-colors ${
               viewMode === 'stack'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-yellow-400 text-black'
+                : 'bg-[#111] text-gray-400 hover:border-yellow-400 border border-[#1f1f1f]'
             }`}
             title="Stack View"
           >
@@ -97,37 +97,37 @@ export default function Credential3DShowcase({
         </div>
 
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600 mr-2">Zoom</span>
+          <span className="text-sm text-gray-400 mr-2">Zoom</span>
           <button
             onClick={handleZoomOut}
-            className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+            className="p-2 bg-[#111] border border-[#1f1f1f] hover:border-yellow-400 rounded-lg transition-colors"
             title="Zoom Out"
           >
-            <Minimize2 className="w-4 h-4 text-gray-600" />
+            <Minimize2 className="w-4 h-4 text-gray-400" />
           </button>
-          <span className="text-sm font-mono text-gray-700 min-w-[3rem] text-center">
+          <span className="text-sm font-mono text-gray-300 min-w-[3rem] text-center">
             {Math.round(zoom * 100)}%
           </span>
           <button
             onClick={handleZoomIn}
-            className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+            className="p-2 bg-[#111] border border-[#1f1f1f] hover:border-yellow-400 rounded-lg transition-colors"
             title="Zoom In"
           >
-            <Maximize2 className="w-4 h-4 text-gray-600" />
+            <Maximize2 className="w-4 h-4 text-gray-400" />
           </button>
           <button
             onClick={handleRotate}
-            className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors ml-2"
+            className="p-2 bg-[#111] border border-[#1f1f1f] hover:border-yellow-400 rounded-lg transition-colors ml-2"
             title="Rotate View"
           >
-            <RotateCw className="w-4 h-4 text-gray-600" />
+            <RotateCw className="w-4 h-4 text-gray-400" />
           </button>
         </div>
       </div>
 
       {/* 3D Showcase Area */}
       <motion.div
-        className="relative min-h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 overflow-hidden"
+        className="relative min-h-[500px] bg-gradient-to-br from-[#0d0d0d] to-black rounded-2xl p-8 overflow-hidden border border-[#1f1f1f]"
         style={{
           perspective: '2000px',
         }}
@@ -136,8 +136,11 @@ export default function Credential3DShowcase({
       >
         {/* Ambient Background */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-400 rounded-full blur-3xl opacity-10 animate-pulse" />
+          <div
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-400 rounded-full blur-3xl opacity-10 animate-pulse"
+            style={{ animationDelay: '1s' }}
+          />
         </div>
 
         <AnimatePresence mode="wait">
@@ -228,7 +231,7 @@ export default function Credential3DShowcase({
                 })}
               </div>
               <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-                <p className="text-sm text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full">
+                <p className="text-sm text-gray-400 bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#1f1f1f]">
                   Hover over cards to expand • Click to focus
                 </p>
               </div>
@@ -266,17 +269,17 @@ export default function Credential3DShowcase({
                 <button
                   onClick={() => setFocusedIndex(Math.max(0, focusedIndex - 1))}
                   disabled={focusedIndex === 0}
-                  className="px-4 py-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-[#111] border border-[#1f1f1f] text-gray-300 rounded-lg hover:border-yellow-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Previous
                 </button>
-                <span className="text-sm text-gray-600 bg-white px-4 py-2 rounded-lg">
+                <span className="text-sm text-gray-400 bg-[#111] border border-[#1f1f1f] px-4 py-2 rounded-lg">
                   {focusedIndex + 1} / {credentials.length}
                 </span>
                 <button
                   onClick={() => setFocusedIndex(Math.min(credentials.length - 1, focusedIndex + 1))}
                   disabled={focusedIndex === credentials.length - 1}
-                  className="px-4 py-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-[#111] border border-[#1f1f1f] text-gray-300 rounded-lg hover:border-yellow-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Next
                 </button>
@@ -285,7 +288,7 @@ export default function Credential3DShowcase({
                     setViewMode('stack');
                     setFocusedIndex(null);
                   }}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all"
+                  className="px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 transition-all"
                 >
                   Back to Stack
                 </button>
@@ -296,27 +299,27 @@ export default function Credential3DShowcase({
       </motion.div>
 
       {/* Info Panel */}
-      <div className="bg-white rounded-lg shadow-sm p-4">
+      <div className="bg-gradient-to-br from-[#111] to-black border border-[#1f1f1f] rounded-lg shadow-lg p-4 text-white">
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center space-x-6">
             <div>
-              <span className="text-gray-500">Total Credentials:</span>
-              <span className="ml-2 font-semibold text-gray-900">{credentials.length}</span>
+              <span className="text-gray-400">Total Credentials:</span>
+              <span className="ml-2 font-semibold">{credentials.length}</span>
             </div>
             <div>
-              <span className="text-gray-500">Active:</span>
-              <span className="ml-2 font-semibold text-green-600">
+              <span className="text-gray-400">Active:</span>
+              <span className="ml-2 font-semibold text-yellow-400">
                 {credentials.filter(c => !c.revoked).length}
               </span>
             </div>
             <div>
-              <span className="text-gray-500">Revoked:</span>
-              <span className="ml-2 font-semibold text-red-600">
+              <span className="text-gray-400">Revoked:</span>
+              <span className="ml-2 font-semibold text-red-500">
                 {credentials.filter(c => c.revoked).length}
               </span>
             </div>
           </div>
-          <div className="text-gray-500">
+          <div className="text-gray-400">
             {viewMode === 'grid' && 'Grid View'}
             {viewMode === 'stack' && 'Stack View'}
             {viewMode === 'focus' && 'Focus View'}
