@@ -102,8 +102,8 @@ export default function Credential3DCard({
             transformStyle: 'preserve-3d',
           }}
         >
-          {/* Holographic Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-90">
+          {/* Dark Web3 Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#111] via-[#0d0d0d] to-black opacity-95">
             <div
               className="absolute inset-0"
               style={{
@@ -112,15 +112,15 @@ export default function Credential3DCard({
                     0deg,
                     transparent,
                     transparent 2px,
-                    rgba(255, 255, 255, 0.03) 2px,
-                    rgba(255, 255, 255, 0.03) 4px
+                    rgba(255, 199, 0, 0.04) 2px,
+                    rgba(255, 199, 0, 0.04) 4px
                   ),
                   repeating-linear-gradient(
                     90deg,
                     transparent,
                     transparent 2px,
-                    rgba(255, 255, 255, 0.03) 2px,
-                    rgba(255, 255, 255, 0.03) 4px
+                    rgba(255, 199, 0, 0.04) 2px,
+                    rgba(255, 199, 0, 0.04) 4px
                   )
                 `
               }}
@@ -129,9 +129,10 @@ export default function Credential3DCard({
 
           {/* Shimmer Effect */}
           <motion.div
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-25"
             style={{
-              background: 'linear-gradient(110deg, transparent 0%, transparent 40%, rgba(255, 255, 255, 0.6) 50%, transparent 60%, transparent 100%)',
+              background:
+                'linear-gradient(110deg, transparent 0%, transparent 40%, rgba(255,199,0,0.6) 50%, transparent 60%, transparent 100%)',
             }}
             animate={{
               x: ['-100%', '200%'],
@@ -144,49 +145,38 @@ export default function Credential3DCard({
             }}
           />
 
-          {/* Security Pattern */}
-          <div className="absolute top-0 right-0 w-48 h-48 opacity-10">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              <pattern id="security-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="10" cy="10" r="1" fill="white" />
-                <path d="M 5 5 L 15 15 M 15 5 L 5 15" stroke="white" strokeWidth="0.5" />
-              </pattern>
-              <rect width="100" height="100" fill="url(#security-pattern)" />
-            </svg>
-          </div>
-
           {/* Content */}
           <div className="relative h-full p-8 flex flex-col justify-between text-white">
             <div>
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center space-x-3">
                   <motion.div
-                    className="p-3 bg-white/20 backdrop-blur-sm rounded-xl"
+                    className="p-3 bg-yellow-400/10 border border-yellow-400/20 rounded-xl"
                     whileHover={{ scale: 1.1, rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <FileText className="w-8 h-8" />
+                    <FileText className="w-8 h-8 text-yellow-400" />
                   </motion.div>
                   <div>
-                    <div className="text-xs font-semibold opacity-80 uppercase tracking-wider">
+                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                       Verified Credential
                     </div>
-                    <div className="text-sm font-mono opacity-60">
+                    <div className="text-sm font-mono text-gray-500">
                       #{credential.tokenId}
                     </div>
                   </div>
                 </div>
                 {credential.revoked ? (
-                  <div className="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full shadow-lg">
+                  <div className="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full shadow-lg">
                     REVOKED
                   </div>
                 ) : (
                   <motion.div
-                    className="p-2 bg-green-400/20 rounded-full"
+                    className="p-2 bg-yellow-400/10 rounded-full"
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <Shield className="w-5 h-5 text-green-300" />
+                    <Shield className="w-5 h-5 text-yellow-400" />
                   </motion.div>
                 )}
               </div>
@@ -196,7 +186,7 @@ export default function Credential3DCard({
                   {credential.degree}
                 </h3>
                 <div className="flex items-center space-x-2">
-                  <Building2 className="w-5 h-5 opacity-80" />
+                  <Building2 className="w-5 h-5 text-gray-400" />
                   <span className="text-lg font-medium line-clamp-1">
                     {credential.institution}
                   </span>
@@ -205,37 +195,18 @@ export default function Credential3DCard({
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center space-x-2 opacity-80">
-                  <Calendar className="w-4 h-4" />
-                  <span>Issued: {formatDate(credential.issueDate)}</span>
-                </div>
+              <div className="flex items-center space-x-2 text-sm text-gray-400">
+                <Calendar className="w-4 h-4" />
+                <span>Issued: {formatDate(credential.issueDate)}</span>
               </div>
 
-              {/* Holographic Security Strip */}
-              <div className="h-12 relative overflow-hidden rounded-lg bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 opacity-40">
-                <motion.div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent)',
-                  }}
-                  animate={{
-                    x: ['-100%', '200%'],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-xs font-bold text-gray-700 opacity-50 uppercase tracking-widest">
-                    Blockchain Verified
-                  </span>
-                </div>
+              <div className="h-12 rounded-lg bg-gradient-to-r from-yellow-400/20 via-yellow-300/10 to-yellow-400/20 flex items-center justify-center">
+                <span className="text-xs font-bold text-gray-300 uppercase tracking-widest">
+                  Blockchain Verified
+                </span>
               </div>
 
-              <div className="text-xs text-center opacity-60">
+              <div className="text-xs text-center text-gray-500">
                 Click to flip • Hover to rotate
               </div>
             </div>
@@ -244,57 +215,44 @@ export default function Credential3DCard({
 
         {/* Back Face */}
         <motion.div
-          className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900"
+          className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#111] to-black"
           style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
             transformStyle: 'preserve-3d',
           }}
         >
-          {/* Security Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <svg width="100%" height="100%">
-              <defs>
-                <pattern id="back-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <circle cx="20" cy="20" r="2" fill="white" />
-                  <path d="M 0 0 L 40 40 M 40 0 L 0 40" stroke="white" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#back-pattern)" />
-            </svg>
-          </div>
-
           <div className="relative h-full p-8 flex flex-col justify-between text-white">
             <div>
               <h4 className="text-xl font-bold mb-6 flex items-center">
-                <Shield className="w-6 h-6 mr-2 text-blue-400" />
+                <Shield className="w-6 h-6 mr-2 text-yellow-400" />
                 Credential Details
               </h4>
 
               <div className="space-y-4">
-                <div className="p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div className="p-4 bg-white/5 border border-[#1f1f1f] rounded-lg">
                   <div className="text-xs text-gray-400 mb-1">Token ID</div>
                   <div className="text-sm font-mono">{credential.tokenId}</div>
                 </div>
 
-                <div className="p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div className="p-4 bg-white/5 border border-[#1f1f1f] rounded-lg">
                   <div className="text-xs text-gray-400 mb-1">IPFS Hash</div>
                   <div className="text-sm font-mono break-all">
                     {credential.ipfsHash.slice(0, 20)}...{credential.ipfsHash.slice(-10)}
                   </div>
                 </div>
 
-                <div className="p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div className="p-4 bg-white/5 border border-[#1f1f1f] rounded-lg">
                   <div className="text-xs text-gray-400 mb-1">Student Address</div>
                   <div className="text-sm font-mono break-all">
                     {credential.student.slice(0, 10)}...{credential.student.slice(-8)}
                   </div>
                 </div>
 
-                <div className="p-4 bg-white/5 rounded-lg backdrop-blur-sm">
+                <div className="p-4 bg-white/5 border border-[#1f1f1f] rounded-lg">
                   <div className="text-xs text-gray-400 mb-1">Status</div>
                   <div className="flex items-center space-x-2">
-                    <div className={`w-2 h-2 rounded-full ${credential.revoked ? 'bg-red-500' : 'bg-green-500'} animate-pulse`} />
+                    <div className={`w-2 h-2 rounded-full ${credential.revoked ? 'bg-red-500' : 'bg-yellow-400'} animate-pulse`} />
                     <div className="text-sm font-semibold">
                       {credential.revoked ? 'Revoked' : 'Active & Verified'}
                     </div>
@@ -309,7 +267,7 @@ export default function Credential3DCard({
                   e.stopPropagation();
                   onViewDocument();
                 }}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors flex items-center justify-center"
+                className="w-full py-3 bg-yellow-400 text-black hover:bg-yellow-300 rounded-lg font-semibold transition-colors flex items-center justify-center"
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View Document
@@ -320,7 +278,7 @@ export default function Credential3DCard({
                     e.stopPropagation();
                     onShare();
                   }}
-                  className="py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium transition-colors flex items-center justify-center text-sm"
+                  className="py-2 bg-[#111] border border-[#1f1f1f] hover:border-yellow-400 rounded-lg font-medium transition-colors flex items-center justify-center text-sm"
                 >
                   <Share2 className="w-4 h-4 mr-1" />
                   Share
@@ -330,7 +288,7 @@ export default function Credential3DCard({
                     e.stopPropagation();
                     onViewHistory();
                   }}
-                  className="py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium transition-colors flex items-center justify-center text-sm"
+                  className="py-2 bg-[#111] border border-[#1f1f1f] hover:border-yellow-400 rounded-lg font-medium transition-colors flex items-center justify-center text-sm"
                 >
                   <History className="w-4 h-4 mr-1" />
                   History
